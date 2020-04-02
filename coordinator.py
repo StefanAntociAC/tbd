@@ -36,12 +36,10 @@ class Coordinator:
 		if (self.rank == 0):
 			for key in self.data.keys():
 				if counter < self.proc:
-					print(counter, flush=True)
 					self.send_data(key, counter,self.tag_map)
 					counter = counter+1
 				else:
 					next_rank = self.get_free_item()
-					print(next_rank, flush=True)
 					if type(next_rank) is int:
 						self.send_data(key, next_rank, self.tag_map)	
 	def reduce(self):

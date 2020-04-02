@@ -31,7 +31,6 @@ class Worker:
 		while True:
 			data = self.comm.recv(None, 0, MPI.ANY_TAG, status=self.status)
 			tag = self.status.Get_tag()
-			print(str(self.rank) + " recv "+data, flush=True)
 			if tag == self.tag_map:
 				self.map(data)
 				self.ack_coord_im_free()
@@ -54,16 +53,5 @@ class Worker:
 		if element[0] not in self.reverse_index.keys():
 			self.reverse_index[element[0]] = list()
 		self.reverse_index[element[0]].append(element[1])				
-		# while True:
-		# 	url = self.get_url_from_coord()
-		# 	print(self.rank)
-		# 	#print(url)
-		# 	for key in self.data.keys():
-		# 		if url in self.data[key]:
-		# 			list_item = self.get_key_from_reverse_index(url)
-		# 			list_item.append(key)
-		# 			print(self.rank, flush=True)
-		# 			print(list_item, flush=True)
-		# 			self.ack_coord_im_free()
 
 
